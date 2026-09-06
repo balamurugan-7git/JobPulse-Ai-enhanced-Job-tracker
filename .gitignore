@@ -1,0 +1,13 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Node
+job-tracker-frontend/node_modules/
+job-tracker-frontend/dist/
+
+# OS junk
+.DS_Store
+Thumbs.db
