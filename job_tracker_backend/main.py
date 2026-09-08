@@ -1,12 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException, status
+from database import engine, get_db
 
 from sqlalchemy.orm import Session
 from typing import List
 from fastapi import UploadFile, File
-
-from job_tracker_backend.database import engine, get_db
-from job_tracker_backend import models, schemas, crud, auth
-from job_tracker_backend.auth import get_current_user
+import models, schemas, crud, auth
+from auth import get_current_user
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Job Tracker API")
@@ -107,8 +106,7 @@ def get_analytics(
     return crud.get_analytics(db, current_user.id)
 
 
-from job_tracker_backend import ml
-
+import ml
 
 @app.post("/applications/{application_id}/match-score", response_model=schemas.ApplicationOut)
 def compute_match_score_route(
@@ -184,7 +182,7 @@ async def upload_resume(
         "extracted_preview": extracted_text[:300],  # show a preview so the user can sanity-check
     }
 
-from job_tracker_backend import skills
+import skills
 
 
 @app.get("/applications/{application_id}/skill-gap", response_model=schemas.SkillGapOut)
