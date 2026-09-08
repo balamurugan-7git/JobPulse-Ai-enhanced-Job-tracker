@@ -32,8 +32,7 @@ class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
 
-from job_tracker_backend.models import ApplicationStatus, RoleType
-
+from models import ApplicationStatus, RoleType
 
 # ---------- Application schemas ----------
 
