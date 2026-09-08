@@ -182,7 +182,7 @@ async def upload_resume(
         "extracted_preview": extracted_text[:300],  # show a preview so the user can sanity-check
     }
 
-from job_tracker_backend import skills
+import skills
 
 
 @app.get("/applications/{application_id}/skill-gap", response_model=schemas.SkillGapOut)
