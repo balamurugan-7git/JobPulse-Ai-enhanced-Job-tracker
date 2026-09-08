@@ -4,10 +4,8 @@ from database import engine, get_db
 from sqlalchemy.orm import Session
 from typing import List
 from fastapi import UploadFile, File
-
-from job_tracker_backend.database import engine, get_db
-from job_tracker_backend import models, schemas, crud, auth
-from job_tracker_backend.auth import get_current_user
+import models, schemas, crud, auth
+from auth import get_current_user
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Job Tracker API")
