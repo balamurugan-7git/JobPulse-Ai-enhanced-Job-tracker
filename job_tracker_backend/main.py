@@ -106,8 +106,7 @@ def get_analytics(
     return crud.get_analytics(db, current_user.id)
 
 
-from job_tracker_backend import ml
-
+import ml
 
 @app.post("/applications/{application_id}/match-score", response_model=schemas.ApplicationOut)
 def compute_match_score_route(
