@@ -3,6 +3,7 @@ services:
   - type: web
     name: job-tracker-backend
     env: python
+    plan: free
     region: singapore
     rootDir: job_tracker_backend
     buildCommand: pip install -r requirements.txt
@@ -33,3 +34,4 @@ databases:
   - name: job-tracker-db
     databaseName: job_tracker
     user: job_tracker_user
+    plan: free
