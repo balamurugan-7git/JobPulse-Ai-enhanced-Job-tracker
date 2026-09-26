@@ -1,0 +1,35 @@
+services:
+  # Backend Web Service (FastAPI)
+  - type: web
+    name: job-tracker-backend
+    env: python
+    region: singapore
+    rootDir: job_tracker_backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: job-tracker-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+
+  # Frontend Static Site (Vite React)
+  - type: web
+    name: job-tracker-frontend
+    env: static
+    rootDir: job-tracker-frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: job-tracker-backend
+          property: url
+
+databases:
+  - name: job-tracker-db
+    databaseName: job_tracker
+    user: job_tracker_user
