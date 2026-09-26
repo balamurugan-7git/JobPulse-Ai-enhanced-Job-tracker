@@ -27,7 +27,7 @@ services:
         fromService:
           type: web
           name: job-tracker-backend
-          property: url
+          property: host
 
 databases:
   - name: job-tracker-db

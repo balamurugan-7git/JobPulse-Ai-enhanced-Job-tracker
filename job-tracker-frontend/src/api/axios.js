@@ -1,7 +1,16 @@
 import axios from "axios";
 
+const rawBaseUrl = import.meta.env.VITE_API_URL;
+let baseURL = "https://jobpulse-ai-enhanced-job-tracker-production.up.railway.app/";
+
+if (rawBaseUrl) {
+  baseURL = rawBaseUrl.startsWith("http://") || rawBaseUrl.startsWith("https://")
+    ? rawBaseUrl
+    : `https://${rawBaseUrl}`;
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://jobpulse-ai-enhanced-job-tracker-production.up.railway.app/",
+  baseURL: baseURL,
 });
 
 // Automatically attach the JWT token (if present) to every request
